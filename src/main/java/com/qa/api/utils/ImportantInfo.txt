@@ -1,0 +1,23 @@
+
+***************************************************************
+Deserialization can be acheived through 2 ways:
+ObjectMapper library - we have implemenetd that thouh JsonUtil class
+JsonUtils.java
+*************************************************************
+JayWay Library - this is prefered way as it handles big JSON files with ease. Creating POJO classes for big json files is high maintenance. 
+this library provide a .parse method which taken json response as string as a parameter. It returns a ReaContext type reference. We can pass jsonquery to .read method and it returns
+the desired output.
+JsonPathValidatorUtil.java is implemented in our frameowrk for this.
+ProductAPITestJayWayJsonPath.java is the test.
+************************************************************
+command to generate report: allure serve allure-results, 
+Below is the code added in base test for allure to generate reports.
+	@BeforeSuite
+	public void setupAllureReport() {
+		
+		RestAssured.filters(new AllureRestAssured());
+	}
+*************************************************************
+Data Driven @DataProvider - returns 2 dimension Object array.
+
+
