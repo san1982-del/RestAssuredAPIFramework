@@ -19,5 +19,41 @@ Below is the code added in base test for allure to generate reports.
 	}
 *************************************************************
 Data Driven @DataProvider - returns 2 dimension Object array.
+************************************************************
+git init                            # create local repo
+git remote add origin https://github.com/san1982-del/RestAssuredAPIFramework.git  # link GitHub
+git status						    # check changes					
+git add .                           # stage files
+git commit -m "reason"				# save snapshot
+git branch -M main					# rename branch
+git push -u origin main				# push to GitHub
+###############################
+origin = default name for the remote
+-m = commit message
+-M = force rename (even if branch exists)
+origin → remote repo
+main → branch name
+-u → sets upstream tracking
+Commit is local, push is remote
+After making changes repeat add, commit, push commands
+###############################
+Jenkins;
+Tools;
+1. Specify JDK path
+2. Speciy Maven name, and slect install automatically
+3. allure commandline installation
+save
+Plugins:
+1. Maven integration
+2. testNG results
+3. HTML publisher: chaintest -- Index.html
+4. allure: alllure report
+
+New Item- Maven Project-git-braanch(main)-Build(goals and options: clean install)-Post-build Actions(Publish TestNG Results)
+Publish HTML reports(
+
+clean install - this means compile my project and run the test cases
+
+
 
 
