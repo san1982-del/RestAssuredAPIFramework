@@ -53,7 +53,22 @@ New Item- Maven Project-git-braanch(main)-Build(goals and options: clean install
 Publish HTML reports(
 
 clean install - this means compile my project and run the test cases
+clean install -DsuiteXmlFile="src/test/resources/testrunners/testng_regression.xml"
 
+Build-PreSteps;
+rmdir /s /q allure-results
+rmdir /s /q allure-report
+above coomands will delete the previous generated results.
+#############################
+Toschedule the jenkin runs follow below;
+https://stackoverflow.com/questions/12472645/how-do-i-schedule-jobs-in-jenkins
+Triggers- check build periodically
+############################
+NRok-Token
+ngrok config add-authtoken 39Jg2eGuBys6QLdiFzi6yjiijn8_3KriCL3Zrc3VCjBQLV5Q8
+ngrok http 80
+https://apodeictically-pecuniary-janine.ngrok-free.dev
+https://apodeictically-pecuniary-janine.ngrok-free.dev/github-webhook/
 
 
 
