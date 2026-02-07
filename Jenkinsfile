@@ -31,7 +31,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/san1982-del/RestAssuredAPIFramework.git'
-                    bat 'mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
+                    bat 'mvn clean install -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
                 }
             }
         }
@@ -44,7 +44,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/san1982-del/RestAssuredAPIFramework.git'
-                    bat 'mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
+                    bat 'mvn clean install -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
                 }
             }
         }
@@ -83,7 +83,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/san1982-del/RestAssuredAPIFramework.git'
-                    bat 'mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
+                    bat 'mvn clean install -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
                 }
             }
         }
@@ -109,7 +109,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/san1982-del/RestAssuredAPIFramework.git'
-                    bat 'mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
+                    bat 'mvn clean install -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
                 }
             }
         }
