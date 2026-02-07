@@ -69,6 +69,13 @@ ngrok config add-authtoken 39Jg2eGuBys6QLdiFzi6yjiijn8_3KriCL3Zrc3VCjBQLV5Q8
 ngrok http 80
 https://apodeictically-pecuniary-janine.ngrok-free.dev
 https://apodeictically-pecuniary-janine.ngrok-free.dev/github-webhook/
+######################################################
+Jenkinsfile
+
+tools{
+        maven 'maven'
+        }
+This name would be same as we mentioned in the tools section for Maven project in jenkins.
 
 
 
