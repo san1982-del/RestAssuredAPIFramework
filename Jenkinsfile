@@ -1,21 +1,19 @@
 pipeline 
 {
     agent any
-    
-    tools{
+    tools {
         maven 'maven'
-        }
-
-    stages 
+    }
+    stages
     {
-        stage('Build') 
+        stage('Build')
         {
             steps
             {
-                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                bat 'mvn -Dmaven.test.failure.ignore=true clean package'
             }
-            post 
+            post
             {
                 success
                 {
@@ -24,47 +22,34 @@ pipeline
                 }
             }
         }
-        
-        
-        stage("Deploy to Dev"){
-            steps{
+        stage("Deploy to Dev") {
+            steps {
                 echo("deploy to Dev")
             }
         }
-        
         stage('Sanity API Automation Test on DEV') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/san1982-del/RestAssuredAPIFramework'
-                    bat "mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml"
-                    
+                    bat 'mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
                 }
             }
         }
-        
-        
-        
-        stage("Deploy to QA"){
-            steps{
+        stage("Deploy to QA") {
+            steps {
                 echo("deploy to qa done")
             }
         }
-          
-                
-                
         stage('Regression API Automation Tests on QA') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/san1982-del/RestAssuredAPIFramework'
-                    bat "mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml"
-                    
+                    bat 'mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
                 }
             }
         }
-                
-     
         stage('Publish Allure Reports') {
-           steps {
+            steps {
                 script {
                     allure([
                         includeProperties: false,
@@ -76,66 +61,57 @@ pipeline
                 }
             }
         }
-        
-        
-        stage('Publish ChainTest Report'){
-            steps{
-                     publishHTML([allowMissing: false,
-                                  alwaysLinkToLastBuild: false, 
-                                  keepAll: true, 
-                                  reportDir: 'target/chaintest', 
-                                  reportFiles: 'Index.html', 
-                                  reportName: 'HTML API Regression ChainTest Report', 
-                                  reportTitles: ''])
+        stage('Publish ChainTest Report') {
+            steps {
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'target/chaintest',
+                    reportFiles: 'Index.html',
+                    reportName: 'HTML API Regression ChainTest Report',
+                    reportTitles: ''
+                ])
             }
         }
-        
-        stage("Deploy to Stage"){
-            steps{
+        stage("Deploy to Stage") {
+            steps {
                 echo("deploy to Stage")
             }
         }
-        
         stage('Sanity API Automation Test on Stage') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/san1982-del/RestAssuredAPIFramework'
-                    bat "mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml"
-                    
+                    bat 'mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
                 }
             }
         }
-        
-        
-        stage('Publish sanity ChainTest Report'){
-            steps{
-                     publishHTML([allowMissing: false,
-                                  alwaysLinkToLastBuild: false, 
-                                  keepAll: true, 
-                                  reportDir: 'target/chaintest', 
-                                  reportFiles: 'Index.html', 
-                                  reportName: 'HTML API Sanity ChainTest Report', 
-                                  reportTitles: ''])
+        stage('Publish sanity ChainTest Report') {
+            steps {
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'target/chaintest',
+                    reportFiles: 'Index.html',
+                    reportName: 'HTML API Sanity ChainTest Report',
+                    reportTitles: ''
+                ])
             }
         }
-        
-        
-        stage("Deploy to PROD"){
-            steps{
+        stage("Deploy to PROD") {
+            steps {
                 echo("deploy to PROD")
             }
         }
-        
         stage('Sanity API Automation Test on PROD') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/san1982-del/RestAssuredAPIFramework'
-                    bat "mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml"
-                    
+                    bat 'mvn clean test -DsuiteXmlFile=src/test/resources/testrunners/testng_sanity.xml'
                 }
             }
         }
-        
-        
     }
 }
